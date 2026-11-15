@@ -1,0 +1,4 @@
+.venv
+notebooks
+dados
+__pycache__

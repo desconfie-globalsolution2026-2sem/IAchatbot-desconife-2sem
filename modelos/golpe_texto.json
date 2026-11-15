@@ -1,0 +1,12 @@
+{
+  "modelo": "Regressão Logística",
+  "limiar": 0.655,
+  "metricas_teste_real": {
+    "recall (golpe)": 1.0,
+    "precisão (golpe)": 0.872,
+    "F1": 0.932,
+    "acurácia": 0.883,
+    "ROC AUC": 0.899
+  },
+  "linhas_treino_final": 933
+}
