@@ -17,7 +17,7 @@ from pathlib import Path
 import joblib
 import numpy as np
 import pandas as pd
-from flask import Flask, Response, jsonify, request, send_file
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from werkzeug.exceptions import HTTPException
 
@@ -45,7 +45,7 @@ def erro(status, titulo, mensagem, campos=None):
 
 @app.errorhandler(HTTPException)
 def http_erro(e):
-    textos = {404: ("Não encontrado", "Rota não encontrada. Use /, /docs, /health, /prever/texto ou /prever/url."),
+    textos = {404: ("Não encontrado", "Rota não encontrada. Use /, /health, /prever/texto ou /prever/url."),
               405: ("Método não permitido", "Use POST nesta rota, com JSON no corpo.")}
     titulo, mensagem = textos.get(e.code, (e.name, e.description))
     return erro(e.code, titulo, mensagem)
@@ -143,38 +143,9 @@ def motivos_url(f, url):
 
 
 # ---------------------------------------------------------------- rotas
-# ---------------------------------------------------------------- documentação (Swagger UI)
-SWAGGER_UI = """<!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Desconfie · IA & ML</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui.css">
-</head>
-<body>
-  <div id="swagger-ui"></div>
-  <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/swagger-ui-bundle.js"></script>
-  <script>SwaggerUIBundle({ url: "/openapi.yaml", dom_id: "#swagger-ui" });</script>
-</body>
-</html>"""
-
-
-@app.get("/docs")
-def docs():
-    return Response(SWAGGER_UI, mimetype="text/html")
-
-
-@app.get("/openapi.yaml")
-def openapi():
-    return send_file(Path(__file__).parent / "openapi.yaml", mimetype="application/yaml")
-
-
 @app.get("/")
 def raiz():
-    """No navegador abre o Swagger UI; para programas devolve o índice em JSON."""
-    if "text/html" in request.headers.get("Accept", ""):
-        return docs()
+    """Índice da API, para quem abre a URL pública no navegador."""
     return jsonify(
         api="Desconfie · IA & ML",
         descricao="Probabilidade de golpe em mensagens e de phishing em links. O veredito final é da API Java.",
