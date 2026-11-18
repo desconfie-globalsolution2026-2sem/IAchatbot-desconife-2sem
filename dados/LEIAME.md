@@ -16,7 +16,7 @@ Gerados por `python montar_dados.py` a partir de `brutos/`.
 - O sufixo de `origem` diz a fonte original no BrScamsFacebook: `interno` (coleta no Facebook), `externo3` e `externo4` (nativos em PT-BR), os demais traduzidos automaticamente do inglês.
 - As mensagens sintéticas foram geradas por modelos de frase. Há o mesmo número de golpes e de legítimas.
 - **Teste o modelo só com `origem` começando por `brscams`** (dados reais). Avaliar com os sintéticos infla as métricas.
-- O MOZ-Smishing (português de Moçambique) foi usado antes e saiu. O arquivo continua em `brutos/`, mas não entra mais no CSV.
+- O MOZ-Smishing (português de Moçambique) foi usado antes e saiu. O arquivo foi removido do repositório.
 - O ideal é cada integrante acrescentar algumas mensagens reais do próprio celular, já mascaradas, com `origem = real`. Faltam principalmente **mensagens legítimas**.
 
 Fonte: [BrScamsFacebook, Kaggle](https://www.kaggle.com/datasets/brunaassisgt/brscamsfacebook) (licença MIT), de Bruna Assis Norões (UFF), artigo VeritaPlugin, SBSeg 2026. Contém links e telefones reais de golpistas: não acesse.

@@ -4,7 +4,6 @@ Monta os CSVs de treino do Desconfie a partir dos dados brutos.
 Entradas (pasta brutos/):
   - brscamsfacebook/BrScamsFacebook.csv  BrScamsFacebook (Kaggle, brunaassisgt, MIT), 450 golpes
                       e mensagens legítimas em português do Brasil, em 6 categorias.
-                      (moz_smishing.csv, de Moçambique, não é mais usado.)
   - legitphish.csv    LegitPhish (Mendeley Data, DOI 10.17632/hx4m73v2sf.2), 101.219 URLs
                       com 16 features numéricas. ClassLabel: 0 = phishing, 1 = legítima.
 
