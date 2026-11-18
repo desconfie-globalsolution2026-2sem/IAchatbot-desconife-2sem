@@ -10,9 +10,10 @@ Dois modelos de **classificação** e uma API **Flask** que a API Java consome.
 ## Estrutura
 
 ```
-ia-ml/
+desconfie-inteligencia-artificial/
 ├── dados/
-│   ├── brutos/              arquivos originais baixados (o tratamento é feito nos notebooks)
+│   ├── brscamsfacebook.csv  mensagens reais (Kaggle), usadas no notebook 01
+│   ├── legitphish.csv       URLs (Mendeley Data), usadas no notebook 02
 │   └── LEIAME.md            fontes, licenças e cuidados
 ├── notebooks/
 │   ├── 01_modelo_golpe_texto.ipynb     EDA, treino, avaliação, exportação

@@ -1,6 +1,6 @@
 # Dados de treino
 
-Só os arquivos originais ficam em `brutos/`. Cada notebook trata os dados dele ao rodar: mascara, filtra, gera as sintéticas e junta tudo, com semente fixa (`SEMENTE = 42`). Não existe CSV intermediário.
+Aqui ficam só os arquivos originais, do jeito que foram baixados. Cada notebook trata os dados dele ao rodar: mascara, filtra, gera as sintéticas e junta tudo, com semente fixa (`SEMENTE = 42`). Não existe CSV intermediário.
 
 ## Mensagens (notebook 01, modelo 1: essa mensagem é golpe?)
 
