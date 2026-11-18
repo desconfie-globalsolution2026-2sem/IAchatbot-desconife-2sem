@@ -12,8 +12,10 @@ Dois modelos de **classificação** e uma API **Flask** que a API Java consome.
 ```
 desconfie-inteligencia-artificial/
 ├── dados/
-│   ├── brscamsfacebook.csv  mensagens reais (Kaggle), usadas no notebook 01
-│   └── legitphish.csv       URLs (Mendeley Data), usadas no notebook 02
+│   ├── brscamsfacebook.csv   original: mensagens reais (Kaggle)
+│   ├── legitphish.csv        original: URLs (Mendeley Data)
+│   ├── treino_mensagens.csv  gerado pelo notebook 01: base final do modelo 1
+│   └── treino_urls.csv       gerado pelo notebook 02: base final do modelo 2
 ├── notebooks/
 │   ├── 01_modelo_golpe_texto.ipynb     EDA, treino, avaliação, exportação
 │   └── 02_modelo_url_phishing.ipynb    EDA, treino, avaliação, exportação
@@ -32,7 +34,7 @@ O blueprint do deploy (`render.yaml`) fica na **raiz do repositório**, um níve
 
 ## Dados
 
-Só os arquivos originais ficam em `dados/`. Cada notebook trata os dados dele quando roda (mascara, filtra, gera as sintéticas e junta tudo) com `SEMENTE = 42`, então o resultado é sempre o mesmo.
+Os arquivos originais ficam em `dados/`. Cada notebook trata os dados dele quando roda (mascara, filtra, gera as sintéticas e junta tudo) e salva a base final em `dados/treino_*.csv`. A semente é fixa (`SEMENTE = 42`), então o resultado é sempre o mesmo.
 
 | Modelo | Fonte | Reais | Sintéticas (geradas no notebook) |
 |---|---|---|---|
