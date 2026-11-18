@@ -1,8 +1,8 @@
 # Dados de treino
 
-Gerados por `python montar_dados.py` a partir de `brutos/`.
+Só os arquivos originais ficam em `brutos/`. Cada notebook trata os dados dele ao rodar: mascara, filtra, gera as sintéticas e junta tudo, com semente fixa (`SEMENTE = 42`). Não existe CSV intermediário.
 
-## mensagens.csv (modelo 1: essa mensagem é golpe?)
+## Mensagens (notebook 01, modelo 1: essa mensagem é golpe?)
 
 `texto,golpe,tipo,origem,pais`: 933 mensagens, todas em português do Brasil, golpe = 1.
 
@@ -21,7 +21,7 @@ Gerados por `python montar_dados.py` a partir de `brutos/`.
 
 Fonte: [BrScamsFacebook, Kaggle](https://www.kaggle.com/datasets/brunaassisgt/brscamsfacebook) (licença MIT), de Bruna Assis Norões (UFF), artigo VeritaPlugin, SBSeg 2026. Contém links e telefones reais de golpistas: não acesse.
 
-## urls.csv (modelo 2: esse link é phishing?)
+## URLs (notebook 02, modelo 2: esse link é phishing?)
 
 `url`, 16 features calculadas a partir do próprio endereço, `phishing`, `origem`: 106.218 URLs.
 

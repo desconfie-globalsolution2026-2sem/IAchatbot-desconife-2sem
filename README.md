@@ -5,17 +5,14 @@ Dois modelos de **classificação** e uma API **Flask** que a API Java consome.
 | # | Pergunta | Algoritmo escolhido | Comparado com | Teste (dados reais) |
 |---|---|---|---|---|
 | 1 | Essa mensagem é golpe? | TF-IDF + Regressão Logística | Naive Bayes | recall 1,000 · precisão 0,872 · F1 0,932 (limiar 0,655, 94 mensagens reais BR) |
-| 2 | Esse link é phishing? | Random Forest (18 features da URL) | Regressão Logística | recall 0,998 · precisão 0,990 · F1 0,994 (só URLs BR: F1 0,923) |
+| 2 | Esse link é phishing? | Random Forest (18 features da URL) | Regressão Logística | recall 0,978 · precisão 0,999 · F1 0,988 (limiar 0,90; só URLs BR: recall 0,959 · precisão 0,992) |
 
 ## Estrutura
 
 ```
 ia-ml/
 ├── dados/
-│   ├── mensagens.csv        933 mensagens (BrScamsFacebook + sintéticas BR)
-│   ├── urls.csv             106.218 URLs (LegitPhish + sintéticas BR)
-│   ├── montar_dados.py      recria os CSVs a partir de brutos/
-│   ├── brutos/              arquivos originais baixados
+│   ├── brutos/              arquivos originais baixados (o tratamento é feito nos notebooks)
 │   └── LEIAME.md            fontes, licenças e cuidados
 ├── notebooks/
 │   ├── 01_modelo_golpe_texto.ipynb     EDA, treino, avaliação, exportação
