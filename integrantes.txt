@@ -6,7 +6,9 @@ RM573469 · Juan Souza Marques
 RM570017 · Matheus Matsushita de Souza
 
 Explicações adicionais:
-- Dados: dados/mensagens.csv e dados/urls.csv (origem de cada fonte em dados/LEIAME.md).
+- Dados: dados/brscamsfacebook.csv (mensagens reais, Kaggle) e dados/legitphish.csv (URLs, Mendeley Data).
+  O tratamento (mascaramento LGPD, filtros e geração das mensagens e URLs brasileiras sintéticas) é feito
+  dentro de cada notebook, com semente fixa. Fontes e licenças na seção "Dados" do README.md.
 - Notebooks: notebooks/01_modelo_golpe_texto.ipynb e notebooks/02_modelo_url_phishing.ipynb.
 - Modelos: modelos/golpe_texto.joblib e modelos/url_phishing.joblib.
 - API Flask: app.py (rodar com: pip install -r requirements.txt && flask --app app run).
