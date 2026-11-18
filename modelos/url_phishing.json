@@ -1,6 +1,6 @@
 {
   "modelo": "Random Forest",
-  "limiar": 0.5,
+  "limiar": 0.9,
   "features": [
     "url_length",
     "has_ip_address",
@@ -23,25 +23,25 @@
   ],
   "metricas_teste_por_dominio": {
     "todo o teste": {
-      "recall (phishing)": 0.998,
-      "precisão (phishing)": 0.99,
-      "F1": 0.994,
-      "acurácia": 0.992,
+      "recall (phishing)": 0.978,
+      "precisão (phishing)": 0.999,
+      "F1": 0.988,
+      "acurácia": 0.986,
       "ROC AUC": 1.0
     },
     "só LegitPhish": {
-      "recall (phishing)": 0.999,
-      "precisão (phishing)": 0.994,
-      "F1": 0.997,
-      "acurácia": 0.996,
+      "recall (phishing)": 0.979,
+      "precisão (phishing)": 0.999,
+      "F1": 0.989,
+      "acurácia": 0.986,
       "ROC AUC": 1.0
     },
     "só sintéticas BR": {
-      "recall (phishing)": 0.984,
-      "precisão (phishing)": 0.87,
-      "F1": 0.923,
-      "acurácia": 0.913,
-      "ROC AUC": 0.99
+      "recall (phishing)": 0.959,
+      "precisão (phishing)": 0.992,
+      "F1": 0.975,
+      "acurácia": 0.98,
+      "ROC AUC": 0.992
     }
   },
   "linhas_treino_final": 106218

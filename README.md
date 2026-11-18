@@ -5,18 +5,17 @@ Dois modelos de **classificação** e uma API **Flask** que a API Java consome.
 | # | Pergunta | Algoritmo escolhido | Comparado com | Teste (dados reais) |
 |---|---|---|---|---|
 | 1 | Essa mensagem é golpe? | TF-IDF + Regressão Logística | Naive Bayes | recall 1,000 · precisão 0,872 · F1 0,932 (limiar 0,655, 94 mensagens reais BR) |
-| 2 | Esse link é phishing? | Random Forest (18 features da URL) | Regressão Logística | recall 0,998 · precisão 0,990 · F1 0,994 (só URLs BR: F1 0,923) |
+| 2 | Esse link é phishing? | Random Forest (18 features da URL) | Regressão Logística | recall 0,978 · precisão 0,999 · F1 0,988 (limiar 0,90; só URLs BR: recall 0,959 · precisão 0,992) |
 
 ## Estrutura
 
 ```
-ia-ml/
+desconfie-inteligencia-artificial/
 ├── dados/
-│   ├── mensagens.csv        933 mensagens (BrScamsFacebook + sintéticas BR)
-│   ├── urls.csv             106.218 URLs (LegitPhish + sintéticas BR)
-│   ├── montar_dados.py      recria os CSVs a partir de brutos/
-│   ├── brutos/              arquivos originais baixados
-│   └── LEIAME.md            fontes, licenças e cuidados
+│   ├── brscamsfacebook.csv   original: mensagens reais (Kaggle)
+│   ├── legitphish.csv        original: URLs (Mendeley Data)
+│   ├── treino_mensagens.csv  gerado pelo notebook 01: base final do modelo 1
+│   └── treino_urls.csv       gerado pelo notebook 02: base final do modelo 2
 ├── notebooks/
 │   ├── 01_modelo_golpe_texto.ipynb     EDA, treino, avaliação, exportação
 │   └── 02_modelo_url_phishing.ipynb    EDA, treino, avaliação, exportação
@@ -32,6 +31,21 @@ ia-ml/
 ```
 
 O blueprint do deploy (`render.yaml`) fica na **raiz do repositório**, um nível acima desta pasta.
+
+## Dados
+
+Os arquivos originais ficam em `dados/`. Cada notebook trata os dados dele quando roda (mascara, filtra, gera as sintéticas e junta tudo) e salva a base final em `dados/treino_*.csv`. A semente é fixa (`SEMENTE = 42`), então o resultado é sempre o mesmo.
+
+| Modelo | Fonte | Reais | Sintéticas (geradas no notebook) |
+|---|---|---|---|
+| 1 · mensagens | [BrScamsFacebook](https://www.kaggle.com/datasets/brunaassisgt/brscamsfacebook) (Kaggle, MIT, Bruna Assis Norões/UFF) | 298 golpes · 75 legítimas | 280 golpes · 280 legítimas |
+| 2 · URLs | [LegitPhish](https://data.mendeley.com/datasets/hx4m73v2sf/2) (Mendeley Data, DOI 10.17632/hx4m73v2sf.2) | 63.678 phishing · 37.540 legítimas | 2.500 phishing · 2.500 legítimas |
+
+- **LGPD:** telefones, CPFs, e-mails e números longos viram `[TELEFONE]`, `[CPF]` e `[EMAIL]`.
+- **Cuidado:** o BrScamsFacebook tem links e telefones reais de golpistas. Não acesse.
+- **O teste do modelo 1 usa só mensagens reais.** Testar com as sintéticas infla as métricas. A categoria "Desinformação Digital" fica de fora, porque é fake news e não golpe.
+- **No LegitPhish original, `ClassLabel` 0 = phishing.** Nos notebooks ele vira `phishing = 1`.
+- **Por que URLs sintéticas:** no LegitPhish, todo link legítimo usa HTTPS e 77% dos de phishing usam IP, então o modelo deixava passar `https://itau-seguranca-app.xyz/login`. As sintéticas trazem domínios oficiais brasileiros e golpes no formato `marca-palavra.xyz`, com HTTPS dos dois lados.
 
 ## Rodar a API
 
