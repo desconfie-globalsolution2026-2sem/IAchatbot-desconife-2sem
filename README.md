@@ -13,8 +13,7 @@ Dois modelos de **classificação** e uma API **Flask** que a API Java consome.
 desconfie-inteligencia-artificial/
 ├── dados/
 │   ├── brscamsfacebook.csv  mensagens reais (Kaggle), usadas no notebook 01
-│   ├── legitphish.csv       URLs (Mendeley Data), usadas no notebook 02
-│   └── LEIAME.md            fontes, licenças e cuidados
+│   └── legitphish.csv       URLs (Mendeley Data), usadas no notebook 02
 ├── notebooks/
 │   ├── 01_modelo_golpe_texto.ipynb     EDA, treino, avaliação, exportação
 │   └── 02_modelo_url_phishing.ipynb    EDA, treino, avaliação, exportação
@@ -30,6 +29,21 @@ desconfie-inteligencia-artificial/
 ```
 
 O blueprint do deploy (`render.yaml`) fica na **raiz do repositório**, um nível acima desta pasta.
+
+## Dados
+
+Só os arquivos originais ficam em `dados/`. Cada notebook trata os dados dele quando roda (mascara, filtra, gera as sintéticas e junta tudo) com `SEMENTE = 42`, então o resultado é sempre o mesmo.
+
+| Modelo | Fonte | Reais | Sintéticas (geradas no notebook) |
+|---|---|---|---|
+| 1 · mensagens | [BrScamsFacebook](https://www.kaggle.com/datasets/brunaassisgt/brscamsfacebook) (Kaggle, MIT, Bruna Assis Norões/UFF) | 298 golpes · 75 legítimas | 280 golpes · 280 legítimas |
+| 2 · URLs | [LegitPhish](https://data.mendeley.com/datasets/hx4m73v2sf/2) (Mendeley Data, DOI 10.17632/hx4m73v2sf.2) | 63.678 phishing · 37.540 legítimas | 2.500 phishing · 2.500 legítimas |
+
+- **LGPD:** telefones, CPFs, e-mails e números longos viram `[TELEFONE]`, `[CPF]` e `[EMAIL]`.
+- **Cuidado:** o BrScamsFacebook tem links e telefones reais de golpistas. Não acesse.
+- **O teste do modelo 1 usa só mensagens reais.** Testar com as sintéticas infla as métricas. A categoria "Desinformação Digital" fica de fora, porque é fake news e não golpe.
+- **No LegitPhish original, `ClassLabel` 0 = phishing.** Nos notebooks ele vira `phishing = 1`.
+- **Por que URLs sintéticas:** no LegitPhish, todo link legítimo usa HTTPS e 77% dos de phishing usam IP, então o modelo deixava passar `https://itau-seguranca-app.xyz/login`. As sintéticas trazem domínios oficiais brasileiros e golpes no formato `marca-palavra.xyz`, com HTTPS dos dois lados.
 
 ## Rodar a API
 
