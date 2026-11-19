@@ -27,10 +27,8 @@ desconfie-inteligencia-artificial/
 ├── requirements.txt         dependências da API
 ├── requirements-notebooks.txt
 ├── Dockerfile               deploy no Render
-└── integrantes.txt          preencher antes de entregar
+└── integrantes.txt          RM, nome e turma de cada integrante
 ```
-
-O blueprint do deploy (`render.yaml`) fica na **raiz do repositório**, um nível acima desta pasta.
 
 ## Dados
 
@@ -82,20 +80,17 @@ Os notebooks salvam os `.joblib` em `modelos/`. Se mudar `features.py`, rode os 
 
 ## Deploy no Render (API pública)
 
-O repositório traz `render.yaml` na raiz, então o jeito mais curto é **Blueprint**:
+**API publicada:** https://iachatbot-desconife-2sem.onrender.com
 
-1. Render → **New → Blueprint** → conecta este repositório → **Apply**.
-   O blueprint já define: Docker, Root Directory `ia-ml`, plano free, health check em `/health` e deploy automático a cada push.
-2. No fim, o Render dá uma URL pública tipo `https://desconfie-ia-ml.onrender.com`.
-3. Essa URL vai na variável de ambiente **`FLASK_URL`** da API Java.
+Como foi publicada: Render → **New → Web Service** → conecta este repositório → Runtime **Docker** (o `Dockerfile` fica na raiz), plano free, health check em `/health` e deploy automático a cada push.
 
-Sem blueprint, dá no mesmo por **New → Web Service** → Root Directory `ia-ml` → Runtime **Docker**.
+A URL pública vai na variável de ambiente **`IA_URL`** da API Java (`desconfie.ia.url` no `application.properties`).
 
-Conferindo que subiu:
+Conferindo que está no ar:
 
 ```bash
-curl https://SEU-SERVICO.onrender.com/health
-curl -X POST https://SEU-SERVICO.onrender.com/prever/texto -H "Content-Type: application/json" \
+curl https://iachatbot-desconife-2sem.onrender.com/health
+curl -X POST https://iachatbot-desconife-2sem.onrender.com/prever/texto -H "Content-Type: application/json" \
   -d '{"texto": "URGENTE: seu PIX foi bloqueado. Regularize em itau-seguranca.xyz"}'
 ```
 
