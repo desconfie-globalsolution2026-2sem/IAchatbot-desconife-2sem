@@ -1,9 +1,9 @@
-Desconfie · Global Solution 2026/2 · Artificial Intelligence & Chatbot · Turma 1TDS
+Desconfie · Global Solution 2026/2 · Artificial Intelligence & Chatbot
 
-RM570636 · Pedro Amaro Pires
-RM571985 · Lucas Leite Carlos
-RM573469 · Juan Souza Marques
-RM570017 · Matheus Matsushita de Souza
+RM570636 · Pedro Amaro Pires · 1TDSPW
+RM571985 · Lucas Leite Carlos · 1TDSPJ
+RM573469 · Juan Souza Marques · 1TDSPJ
+RM570017 · Matheus Matsushita de Souza · 1TDSPJ
 
 Explicações adicionais:
 - Dados: dados/brscamsfacebook.csv (mensagens reais, Kaggle) e dados/legitphish.csv (URLs, Mendeley Data).
